@@ -1,0 +1,17 @@
+{
+  "name": "TestsBackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bfjeje/unyleya-backend-for-mobile.git",
+  "author": "Bruno Ellerbach <ingbrunofernandez@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
