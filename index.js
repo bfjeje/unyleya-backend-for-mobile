@@ -11,7 +11,7 @@ app.get('/', function(req, resp){
         <head>
         </head>
         <body>
-            <h1>Home</h1>
+            <h1>Home - Pos Graduacion</h1>
         </body>
         </html>
         `
