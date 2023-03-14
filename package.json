@@ -1,0 +1,11 @@
+{
+  "name": "ProjetoLivros",
+  "version": "1",
+  "description": "Projeto Livros",
+  "main": "index.js",
+  "author": "Bruno Ellerbach <ingbrunofernandez@gmail.com>",
+  "license": "GPL",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
