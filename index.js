@@ -1,8 +1,12 @@
-const http = require('http');
-const server = http.createServer(function(req, resp){
-    let html = ''
-    if(req.url == "/"){
-        html = `
+const express = require("express");
+const app = express();
+app.listen(3000,function(){
+    console.log("Servidor rodando na porta 3000");
+});
+
+
+app.get('/', function(req, resp){
+    resp.send(`
         <html>
         <head>
         </head>
@@ -11,8 +15,11 @@ const server = http.createServer(function(req, resp){
         </body>
         </html>
         `
-    }else if(req.url=="/livros"){
-        html=`
+    );
+});
+
+app.get('/livros', function(req, resp){
+    resp.send(`
         <html>
         <head>
         </head>
@@ -21,9 +28,5 @@ const server = http.createServer(function(req, resp){
         </body>
         </html>
         `
-    }
-    resp.end(
-        html
     );
 });
-server.listen(3000);
