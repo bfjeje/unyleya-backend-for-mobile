@@ -2,6 +2,8 @@ const express = require("express");
 
 const server = express();
 
+const db = require("db");
+
 const products = [];
 let id = 0;
 
@@ -36,3 +38,14 @@ server.post("/products", (req, res) => {
 });
 
 server.listen(3333);
+
+async function connect(){
+    if(global.connection && global.connection.state !== 'disconnected')
+        return global.connection;
+    
+    const mysql = require("mysql2/promise");
+    const connection = await mysql.createConnection("mysql://root:ramosl@localhost:3306/crud");
+    console.log("Conectou com MySQL");
+    global.connection = connection;
+    return connection;
+}
