@@ -1,51 +1,19 @@
+const http = require('http');
 const express = require("express");
+const app = express();
 
-const server = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 
-const db = require("db");
-
-const products = [];
-let id = 0;
-
-server.use(express.json());
-
-server.get("/products/:productId", (req, res) => {
-    const { productId } = req.params;
-
-    const product = products.find(p => p.id === Number(productId));
-
-    if(!product){
-        return res.status(400).json({ error: "Produto não encontrado"});
-    }
-
-    return res.json(product);
+app.get("/", (req, res, next) => {
+    res.json({message: "Teste OK!"});
 })
 
-server.get("/products", (req, res) => {
-    return res.json(products);
+app.get("/clientes", (req, res, next) => {
+    console.log("Retornou os clientes!");
+    res.json([{id:1, nome:'bruno'}]);
 })
 
-server.post("/products", (req, res) => {
-    const { name , price } = req.body;
-
-    products.push({
-        id: ++id,
-        name,
-        price
-    });
-
-    return res.json(products.slice(-1)[0]);
-});
-
-server.listen(3333);
-
-async function connect(){
-    if(global.connection && global.connection.state !== 'disconnected')
-        return global.connection;
-    
-    const mysql = require("mysql2/promise");
-    const connection = await mysql.createConnection("mysql://root:ramosl@localhost:3306/crud");
-    console.log("Conectou com MySQL");
-    global.connection = connection;
-    return connection;
-}
+const server = http.createServer(app);
+server.listen(3000);
+console.log("Servidor escutando na porta 3000...");
